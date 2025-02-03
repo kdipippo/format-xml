@@ -21,37 +21,37 @@ install:          ## Install the project in dev mode.
 
 .PHONY: format
 format:           ## Format code using black & isort.
-	python3.12 -m isort -l 119 format_xml/
+	python3.12 -m isort -l 119 src/
 	python3.12 -m isort -l 119 tests/
-	python3.12 -m black -l 119 format_xml/
+	python3.12 -m black -l 119 src/
 	python3.12 -m black -l 119 tests/
 
 .PHONY: lint
 lint:             ## Run pep8, black, mypy linters on Python code.
-	python3.12 -m flake8 format_xml/
+	python3.12 -m flake8 src/
 	python3.12 -m flake8 tests/
-	python3.12 -m black -l 119 --check format_xml/
+	python3.12 -m black -l 119 --check src/
 	python3.12 -m black -l 119 --check tests/
-	python3.12 -m mypy --ignore-missing-imports format_xml/
+	python3.12 -m mypy --ignore-missing-imports src/
 	python3.12 -m mypy --ignore-missing-imports tests/
-	python3.12 -m pylint ./format_xml/**
+	python3.12 -m pylint ./src/**
 	python3.12 -m pylint ./tests/**
 
 .PHONY: test
 test:             ## Run 'general' tests and generate coverage report.
-	python3.12 -m pytest -v --cov-config .coveragerc --cov=format_xml -l --tb=short --maxfail=1 tests/ -vm general
+	python3.12 -m pytest -v --cov-config .coveragerc --cov=src -l --tb=short --maxfail=1 tests/ -vm general
 	python3.12 -m coverage xml
 	python3.12 -m coverage html
 
 .PHONY: test-verbose
 test-verbose:     ## Run 'general' tests with verbose flag and generate coverage report.
-	python3.12 -m pytest -vv --cov-config .coveragerc --cov=format_xml -l --tb=short --maxfail=1 tests/ -vm general
+	python3.12 -m pytest -vv --cov-config .coveragerc --cov=src -l --tb=short --maxfail=1 tests/ -vm general
 	python3.12 -m coverage xml
 	python3.12 -m coverage html
 
 .PHONY: test
 test-justme:      ## Run individual tests by changing pytest.mark to 'justme' for spot-checking, with verbose flag.
-	python3.12 -m pytest -vv --cov-config .coveragerc --cov=format_xml -l --tb=short --maxfail=1 tests/ -vm justme
+	python3.12 -m pytest -vv --cov-config .coveragerc --cov=src -l --tb=short --maxfail=1 tests/ -vm justme
 
 
 .PHONY: watch

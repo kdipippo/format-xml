@@ -4,7 +4,7 @@ import random
 
 import pytest
 
-from format_xml.format_xml import sort_and_format_xml
+from src.format_xml import sort_and_format_xml
 
 
 @pytest.mark.general
